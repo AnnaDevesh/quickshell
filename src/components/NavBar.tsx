@@ -2,7 +2,6 @@ import React from 'react';
 import { GroupingTypes, SortingTypes } from '../data/Task';
 import { HiAdjustmentsHorizontal } from "react-icons/hi2";
 import './NavBar.css';
-import { BsGraphDownArrow, BsMenuDown } from 'react-icons/bs';
 import { FaAngleDown } from "react-icons/fa";
 
 const groupOptions: GroupingTypes[] = ['Status', 'Priority', 'User'];

@@ -1,8 +1,9 @@
 import React from 'react';
 import { BsThreeDots } from "react-icons/bs";
-import { AiFillExclamationCircle } from 'react-icons/ai';
-import { FaSignal } from 'react-icons/fa';
+import { BsExclamationSquareFill } from "react-icons/bs";
+import { AiFillSignal } from "react-icons/ai";
 import { Task, TaskPriority, TaskStatus } from "../data/Task";
+import { TbCellSignal2, TbCellSignal4 } from "react-icons/tb";
 import { priorityKeyFromValue } from '../pages/utils';
 
 interface ChildProps {
@@ -42,10 +43,10 @@ export const TaskCardIcon = ({ task, className }: { task: Task, className?: stri
 export const PriorityIcon = ({ priority }: { priority: keyof typeof TaskPriority }) => {
   const iconMap: Record<keyof typeof TaskPriority, any> = {
     NoPriority: () => <BsThreeDots />,
-    Urgent: () => <AiFillExclamationCircle color="orange" />,
-    High: () => <FaSignal color="gray" />,
-    Medium: () => <FaSignal color="grey" style={{ opacity: 0.6 }} />,
-    Low: () => <FaSignal color="grey" style={{ opacity: 0.3 }} />,
+    Urgent: () => <BsExclamationSquareFill color="orange" />,
+    High: () => <AiFillSignal />,
+    Medium: () => <TbCellSignal4 />,
+    Low: () => <TbCellSignal2 />,
   };
 
   return iconMap[priority]();

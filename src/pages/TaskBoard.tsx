@@ -15,7 +15,7 @@ interface TaskColumnProps {
 }
 const TaskColumn: React.FC<TaskColumnProps> = ({ columnTitle, tasks, groupedby, users }) => {
   const isUserActive = (userid: string): boolean => {
-      return users.find((v) => v.id == userid)?.available ?? false;
+    return users.find((v) => v.id == userid)?.available ?? false;
   }
   const GroupIcon = () => {
     let firstElement = tasks.length > 0 ? tasks[0] : undefined;
@@ -24,7 +24,7 @@ const TaskColumn: React.FC<TaskColumnProps> = ({ columnTitle, tasks, groupedby, 
       return <PriorityIcon priority={(firstElement !== undefined) ? priorityKeyFromValue(firstElement.priority) : columnTitle} />
     } else if (groupedby === 'User') {
       const userId = firstElement?.userId ?? columnTitle;
-      return <UserIcon userid={userId} isActive={isUserActive(userId)}/>
+      return <UserIcon userid={userId} isActive={isUserActive(userId)} />
     } else if (groupedby === 'Status') {
       //@ts-ignore
       return <StatusIcon status={firstElement?.status ?? columnTitle} />
@@ -37,7 +37,7 @@ const TaskColumn: React.FC<TaskColumnProps> = ({ columnTitle, tasks, groupedby, 
       <TaskColumnHeader>
         <LeftTray>
           <GroupIcon />
-          <div className="text-sm bold">{ groupedby!=='User' ? columnTitle : users.find(v => v.id == columnTitle)?.name ?? "No Name"}</div>
+          <div className="text-sm bold">{groupedby !== 'User' ? columnTitle : users.find(v => v.id == columnTitle)?.name ?? "No Name"}</div>
           <div className="text-sm">{tasks?.length ?? 0}</div>
         </LeftTray>
         <DefaultRightTray />
@@ -57,7 +57,7 @@ const TaskColumn: React.FC<TaskColumnProps> = ({ columnTitle, tasks, groupedby, 
             </div>
           </div>
 
-          {(groupedby !== 'User') && <UserIcon userid={task.userId} className="ml-auto" isActive={isUserActive(task.userId)}/>}
+          {(groupedby !== 'User') && <UserIcon userid={task.userId} className="ml-auto" isActive={isUserActive(task.userId)} />}
         </TaskCardContainer>
       ))}
     </div>

@@ -1,11 +1,6 @@
+import React from 'react';
 import { BsThreeDots } from 'react-icons/bs';
 import { AiOutlinePlus } from 'react-icons/ai';
-
-interface TaskColumnHeaderProps {
-  title: string;
-  count: number;
-}
-
 
 interface ChildrenProps {
   children: React.ReactNode;

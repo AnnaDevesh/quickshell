@@ -68,6 +68,8 @@ const TaskBoard = () => {
   return (
     <>
       <Navbar
+        selectedGroup={groupby}
+        selectedSort={sortby}
         onSortChange={(tp) => {setSortby(tp)}}
         onGroupChange={(grp) => { setGroupBy(grp) }}
       />

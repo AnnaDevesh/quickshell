@@ -7,7 +7,7 @@ import { User } from '../data/User';
 import './TaskBoard.css';
 import { getBoardColumnKeys, groupTasks, priorityKeyFromValue, sortGrouppedTasks } from './utils';
 
-const TaskBoard = ({ tasks, users }: { tasks: Task[], users: User[] }) => {
+export default function TaskBoard({ tasks, users }: { tasks: Task[], users: User[] }) {
   const [groupby, setGroupBy] = useState<GroupingTypes>('Priority');
   const [sortby, setSortby] = useState<SortingTypes>('Priority');
   const groupedTasks = sortGrouppedTasks(groupTasks(groupby, tasks), sortby);
@@ -85,5 +85,3 @@ const TaskColumn: React.FC<TaskColumnProps> = ({ columnTitle, tasks, groupedby, 
     </div>
   );
 };
-
-export default TaskBoard;

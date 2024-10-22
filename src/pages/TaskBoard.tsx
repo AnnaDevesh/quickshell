@@ -18,7 +18,7 @@ const TaskColumn: React.FC<TaskColumnProps> = ({ columnTitle, tasks }) => {
         <LeftTray>
           <BsThreeDots />
           <div className="text-sm bold">{columnTitle}</div>
-          <div className="text-gray-400 text-sm">{tasks.length}</div>
+          <div className="text-sm">{tasks.length}</div>
         </LeftTray>
         <DefaultRightTray />
       </TaskColumnHeader>

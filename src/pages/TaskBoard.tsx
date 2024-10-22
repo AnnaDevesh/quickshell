@@ -7,6 +7,28 @@ import { User } from '../data/User';
 import './TaskBoard.css';
 import { getBoardColumnKeys, groupTasks, priorityKeyFromValue, sortGrouppedTasks } from './utils';
 
+const TaskBoard = ({ tasks, users }: { tasks: Task[], users: User[] }) => {
+  const [groupby, setGroupBy] = useState<GroupingTypes>('Priority');
+  const [sortby, setSortby] = useState<SortingTypes>('Priority');
+  const groupedTasks = sortGrouppedTasks(groupTasks(groupby, tasks), sortby);
+  const keys = getBoardColumnKeys(groupby, tasks);
+  return (
+    <>
+      <Navbar
+        selectedGroup={groupby}
+        selectedSort={sortby}
+        onSortChange={(tp) => { setSortby(tp) }}
+        onGroupChange={(grp) => { setGroupBy(grp) }}
+      />
+      <div className="task-board">
+        {keys.map((columnTitle) => (
+          <TaskColumn groupedby={groupby} key={columnTitle} users={users} columnTitle={columnTitle} tasks={groupedTasks[columnTitle] ?? []} />
+        ))}
+      </div>
+    </>
+  );
+};
+
 interface TaskColumnProps {
   columnTitle: string;
   tasks: Task[];
@@ -61,29 +83,6 @@ const TaskColumn: React.FC<TaskColumnProps> = ({ columnTitle, tasks, groupedby, 
         </TaskCardContainer>
       ))}
     </div>
-  );
-};
-
-
-const TaskBoard = ({ tasks, users }: { tasks: Task[], users: User[] }) => {
-  const [groupby, setGroupBy] = useState<GroupingTypes>('Priority');
-  const [sortby, setSortby] = useState<SortingTypes>('Priority');
-  const groupedTasks = sortGrouppedTasks(groupTasks(groupby, tasks), sortby);
-  const keys = getBoardColumnKeys(groupby, tasks);
-  return (
-    <>
-      <Navbar
-        selectedGroup={groupby}
-        selectedSort={sortby}
-        onSortChange={(tp) => { setSortby(tp) }}
-        onGroupChange={(grp) => { setGroupBy(grp) }}
-      />
-      <div className="task-board">
-        {keys.map((columnTitle) => (
-          <TaskColumn groupedby={groupby} key={columnTitle} users={users} columnTitle={columnTitle} tasks={groupedTasks[columnTitle] ?? []} />
-        ))}
-      </div>
-    </>
   );
 };
 

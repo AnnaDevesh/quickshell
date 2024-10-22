@@ -1,6 +1,6 @@
 import { GroupingTypes, Task, TaskPriority, TaskPriorityTypes, TaskStatusTypes } from "../data/Task";
 
-function priorityKeyFromValue(value: number): string {
+export function priorityKeyFromValue(value: number): keyof typeof TaskPriority {
   const key = TaskPriorityTypes.find((key) => TaskPriority[key] === value);
   if (key === undefined) {
     throw new Error('Invalid priority value')

@@ -198,3 +198,29 @@
   min-width: 16px;
   min-height: 16px;
 }
+
+.status-dot {
+  position: absolute;
+  bottom: 0;
+  right:0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.dot-active{
+  background-color: green;
+}
+
+.dot-inactive{
+  background-color: grey;
+}
+
+.relative{
+  position: relative;
+}
+
+.h-min-content{
+  height: min-content;
+}

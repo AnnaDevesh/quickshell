@@ -55,8 +55,13 @@ export const PriorityIcon = ({ priority }: { priority: keyof typeof TaskPriority
   return iconMap[priority]();
 };
 
-export const UserIcon = ({ userid, className }: { userid: string, className?: string }) => {
-  return <img className={`avatar ${className}`} src={`https://randomuser.me/api/portraits/thumb/men/75.jpg`} alt="avatar" />
+export const UserIcon = ({ userid, isActive = false, className }: { userid: string, isActive?: boolean, className?: string }) => {
+  return (
+    <div className={`relative h-min-content ${className}`}>
+        <img className="avatar" src={`https://randomuser.me/api/portraits/thumb/men/75.jpg`} alt="avatar" />
+        {<span className={`status-dot ${isActive ? "dot-active" : "dot-inactive"}`} />}
+    </div>
+  );
 };
 
 export const StatusIcon = ({ status }: { status: TaskStatus }) => {

@@ -82,3 +82,7 @@
 .m-2{
   margin: 0.5rem;
 }
+
+.text-left{
+  text-align: left;
+}

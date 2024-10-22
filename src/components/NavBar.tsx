@@ -17,7 +17,7 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ selectedGroup, selectedSort, onGroupChange, onSortChange }) => {
   return (
-    <nav className="navbar">
+    <nav className="navbar text-left">
       <div className='dropdown'>
         <div className='flex align-center gap-2 border p-5 rounded-md m-2'>
           <HiAdjustmentsHorizontal />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React  from 'react';
 import { Navbar } from '../components/NavBar';
 import { PriorityIcon, StatusIcon, TagsList, TaskCardContainer, TaskCardIcon, TaskTitle, UserIcon } from '../components/TaskCard';
 import { DefaultRightTray, LeftTray, TaskColumnHeader } from '../components/TaskColumnHeader';

@@ -4,12 +4,13 @@ import { PriorityIcon, StatusIcon, TagsList, TaskCardContainer, TaskCardIcon, Ta
 import { DefaultRightTray, LeftTray, TaskColumnHeader } from '../components/TaskColumnHeader';
 import { GroupingTypes, SortingTypes, Task } from '../data/Task';
 import { User } from '../data/User';
+import useCachedState from '../hooks/useCachedState';
 import './TaskBoard.css';
 import { getBoardColumnKeys, groupTasks, priorityKeyFromValue, sortGrouppedTasks } from './utils';
 
 export default function TaskBoard({ tasks, users }: { tasks: Task[], users: User[] }) {
-  const [groupby, setGroupBy] = useState<GroupingTypes>('Priority');
-  const [sortby, setSortby] = useState<SortingTypes>('Priority');
+  const [groupby, setGroupBy] = useCachedState<GroupingTypes>('appv1-groupingtypes', 'Priority');
+  const [sortby, setSortby] = useCachedState<SortingTypes>('appv1-sortingtypes', 'Priority');
   const groupedTasks = sortGrouppedTasks(groupTasks(groupby, tasks), sortby);
   const keys = getBoardColumnKeys(groupby, tasks);
   return (

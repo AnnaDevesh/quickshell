@@ -11,7 +11,7 @@ export const TaskCard = ({ task }: { task: Task }) => {
         <img className='avatar ml-auto' src={`https://randomuser.me/api/portraits/thumb/men/75.jpg`} alt="avatar" />
       </div>
       <div className="text-md bold">{task.title}</div>
-      <div className='flex align-center gap-5 mt-3'>
+      <div className='flex align-center gap-1 mt-3'>
         <TaskCardIcon task={task} />
         <div>
           {task.tag.map((tag) => (

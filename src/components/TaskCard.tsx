@@ -8,7 +8,7 @@ export const TaskCard = ({ task }: { task: Task }) => {
     <div className="task-card text-left rounded-lg border">
       <div className='flex align-center'>
         <div className="text-sm">{task.id}</div>
-        <img className='avatar ml-auto' src={`https://randomuser.me/api/portraits/thumb/men/75.jpg`} alt="avatar" />
+        <UserIcon task={task} className="ml-auto" />
       </div>
       <div className="text-md bold">{task.title}</div>
       <div className='flex align-center gap-1 mt-3'>
@@ -31,6 +31,12 @@ const TaskTag = ({ tag }: { tag: string }) => {
 };
 
 const TaskCardIcon = ({ task, className }: { task: Task, className?: string }) => {
+  return <span className={`flex align-center border border-light rounded-md p-1 mr-1 ${className}`}>
+    <PriorityIcon task={task} />
+  </span>;
+};
+
+const PriorityIcon = ({ task }: { task: Task }) => {
   const iconMap = {
     [TaskPriority.NoPriority]: () => <BsThreeDots />,
     [TaskPriority.Urgent]: () => <AiFillExclamationCircle color="orange" />,
@@ -39,5 +45,9 @@ const TaskCardIcon = ({ task, className }: { task: Task, className?: string }) =
     [TaskPriority.Low]: () => <FaSignal color="grey" style={{ opacity: 0.3 }} />,
   };
 
-  return <span className={`flex align-center border border-light rounded-md p-1 mr-1 ${className}`}> {iconMap[task.priority]()} </span>;
+  return iconMap[task.priority]();
+};
+
+const UserIcon = ({ task, className }: { task: Task, className: string }) => {
+  return <img className={`avatar ${className}`} src={`https://randomuser.me/api/portraits/thumb/men/75.jpg`} alt="avatar" />
 };

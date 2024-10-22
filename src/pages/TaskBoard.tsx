@@ -37,7 +37,7 @@ const TaskColumn: React.FC<TaskColumnProps> = ({ columnTitle, tasks, groupedby, 
       <TaskColumnHeader>
         <LeftTray>
           <GroupIcon />
-          <div className="text-sm bold">{columnTitle}</div>
+          <div className="text-sm bold">{ groupedby!=='User' ? columnTitle : users.find(v => v.id == columnTitle)?.name ?? "No Name"}</div>
           <div className="text-sm">{tasks?.length ?? 0}</div>
         </LeftTray>
         <DefaultRightTray />

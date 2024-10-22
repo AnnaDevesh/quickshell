@@ -4,7 +4,10 @@ import { BsExclamationSquareFill } from "react-icons/bs";
 import { AiFillSignal } from "react-icons/ai";
 import { Task, TaskPriority, TaskStatus } from "../data/Task";
 import { TbCellSignal2, TbCellSignal4 } from "react-icons/tb";
+import { MdCancel } from "react-icons/md";
 import { priorityKeyFromValue } from '../pages/utils';
+import { FaCheckCircle } from 'react-icons/fa';
+import { BiSolidCircleHalf } from "react-icons/bi";
 
 interface ChildProps {
   children: React.ReactNode;
@@ -59,9 +62,9 @@ export const UserIcon = ({ userid, className }: { userid: string, className?: st
 export const StatusIcon = ({ status }: { status: TaskStatus }) => {
   const iconMap: Record<TaskStatus, any> = {
     Todo: () => <BsThreeDots />,
-    'In progress': () => <BsThreeDots />,
-    Done: () => <BsThreeDots />,
-    Backlog: () => <BsThreeDots />,
+    'In progress': () => <BiSolidCircleHalf className='progress-border rounded-full scale-8 min-dim-20' color='#eab308'/> ,
+    Done: () => <FaCheckCircle color='#6366f1' />,
+    Backlog: () => <MdCancel color='gray' />,
   };
 
   return iconMap[status]();

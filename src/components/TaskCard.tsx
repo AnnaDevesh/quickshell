@@ -1,3 +1,4 @@
+import React from 'react';
 import { BsThreeDots } from "react-icons/bs";
 import { AiFillExclamationCircle } from 'react-icons/ai';
 import { FaSignal } from 'react-icons/fa';

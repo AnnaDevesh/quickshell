@@ -46,7 +46,7 @@ export function sortGrouppedTasks(groupedTasks: { [key: string]: Task[] }, sortb
   for (const key in groupedTasks) {
     newGrouppedTasks[key] = groupedTasks[key].sort((a, b) => {
       if (sortby === 'Priority') {
-        return a.priority - b.priority;
+        return b.priority - a.priority ;
       } else if (sortby === 'Title') {
         return a.title.localeCompare(b.title);
       }

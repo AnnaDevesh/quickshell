@@ -2,23 +2,25 @@ import React from 'react';
 import { BsThreeDots } from 'react-icons/bs';
 import { TaskCard } from '../components/TaskCard';
 import { DefaultRightTray, LeftTray, TaskColumnHeader } from '../components/TaskColumnHeader';
-import { Task, TaskStatus } from '../data/Task';
+import { GroupingTypes, Task, TaskPriorityTypes, TaskStatusTypes } from '../data/Task';
 import { tasks } from '../data/tasks';
 import './TaskBoard.css';
-
+import { getBoardColumnKeys, groupTasks } from './utils';
 
 interface TaskColumnProps {
   columnTitle: string;
   tasks: Task[];
+  groupedby: GroupingTypes;
 }
-const TaskColumn: React.FC<TaskColumnProps> = ({ columnTitle, tasks }) => {
+const TaskColumn: React.FC<TaskColumnProps> = ({ columnTitle, tasks, groupedby }) => {
+  console.log(tasks)
   return (
     <div className="task-column">
       <TaskColumnHeader>
         <LeftTray>
           <BsThreeDots />
           <div className="text-sm bold">{columnTitle}</div>
-          <div className="text-sm">{tasks.length}</div>
+          <div className="text-sm">{tasks?.length ?? 0}</div>
         </LeftTray>
         <DefaultRightTray />
       </TaskColumnHeader>
@@ -29,20 +31,15 @@ const TaskColumn: React.FC<TaskColumnProps> = ({ columnTitle, tasks }) => {
   );
 };
 
+
 const TaskBoard = () => {
-  // gorup tasks by status 
-  const groupedTasks = tasks.reduce((acc, task) => {
-    if (!acc[task.status]) {
-      acc[task.status] = [];
-    }
-    acc[task.status].push(task);
-    return acc;
-  }, {} as Record<TaskStatus, Task[]>);
-  const groupedKeys: TaskStatus[] = Object.keys(groupedTasks) as TaskStatus[];
+  const groupby: GroupingTypes = 'Status'
+  const groupedTasks = groupTasks(groupby, tasks);
+  const keys = getBoardColumnKeys(groupby, tasks);
   return (
     <div className="task-board">
-      {groupedKeys.map((columnTitle: TaskStatus) => (
-        <TaskColumn key={columnTitle} columnTitle={columnTitle} tasks={groupedTasks[columnTitle]} />
+      {keys.map((columnTitle) => (
+        <TaskColumn groupedby={groupby} key={columnTitle} columnTitle={columnTitle} tasks={groupedTasks[columnTitle] ?? []} />
       ))}
     </div>
   );

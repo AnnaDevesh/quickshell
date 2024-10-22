@@ -1,7 +1,7 @@
 import React from 'react';
 import { PriorityIcon, StatusIcon, TagsList, TaskCardContainer, TaskCardIcon, TaskTitle, UserIcon } from '../components/TaskCard';
 import { DefaultRightTray, LeftTray, TaskColumnHeader } from '../components/TaskColumnHeader';
-import { GroupingTypes, Task, TaskPriorityTypes, TaskStatusTypes } from '../data/Task';
+import { GroupingTypes, Task } from '../data/Task';
 import { tasks } from '../data/tasks';
 import './TaskBoard.css';
 import { getBoardColumnKeys, groupTasks, priorityKeyFromValue } from './utils';

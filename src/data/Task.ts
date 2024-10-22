@@ -20,3 +20,4 @@ export type Task = {
 }
 
 export type GroupingTypes = "User" | "Priority" | "Status";
+export type SortingTypes = "Priority" | "Title"

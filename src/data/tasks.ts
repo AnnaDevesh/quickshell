@@ -4,7 +4,7 @@ export const tasks: Task[] = [
   {
     "id": "CAM-1",
     "title": "Update User Profile Page UI",
-    "tag": [
+    "tags": [
       "Feature request"
     ],
     "userId": "usr-1",
@@ -14,7 +14,7 @@ export const tasks: Task[] = [
   {
     "id": "CAM-2",
     "title": "Add Multi-Language Support - Enable multi-language support within the application.",
-    "tag": [
+    "tags": [
       "Feature Request"
     ],
     "userId": "usr-2",
@@ -24,7 +24,7 @@ export const tasks: Task[] = [
   {
     "id": "CAM-3",
     "title": "Optimize Database Queries for Performance",
-    "tag": [
+    "tags": [
       "Feature Request"
     ],
     "userId": "usr-2",
@@ -34,7 +34,7 @@ export const tasks: Task[] = [
   {
     "id": "CAM-4",
     "title": "Implement Email Notification System",
-    "tag": [
+    "tags": [
       "Feature Request"
     ],
     "userId": "usr-1",
@@ -44,7 +44,7 @@ export const tasks: Task[] = [
   {
     "id": "CAM-5",
     "title": "Enhance Search Functionality",
-    "tag": [
+    "tags": [
       "Feature Request"
     ],
     "userId": "usr-5",
@@ -54,7 +54,7 @@ export const tasks: Task[] = [
   {
     "id": "CAM-6",
     "title": "Third-Party Payment Gateway",
-    "tag": [
+    "tags": [
       "Feature Request"
     ],
     "userId": "usr-2",
@@ -64,7 +64,7 @@ export const tasks: Task[] = [
   {
     "id": "CAM-7",
     "title": "Create Onboarding Tutorial for New Users",
-    "tag": [
+    "tags": [
       "Feature Request"
     ],
     "userId": "usr-1",
@@ -74,7 +74,7 @@ export const tasks: Task[] = [
   {
     "id": "CAM-8",
     "title": "Implement Role-Based Access Control (RBAC)",
-    "tag": [
+    "tags": [
       "Feature Request"
     ],
     "userId": "usr-3",
@@ -84,7 +84,7 @@ export const tasks: Task[] = [
   {
     "id": "CAM-9",
     "title": "Upgrade Server Infrastructure",
-    "tag": [
+    "tags": [
       "Feature Request"
     ],
     "userId": "usr-5",
@@ -94,7 +94,7 @@ export const tasks: Task[] = [
   {
     "id": "CAM-10",
     "title": "Conduct Security Vulnerability Assessment",
-    "tag": [
+    "tags": [
       "Feature Request"
     ],
     "userId": "usr-4",

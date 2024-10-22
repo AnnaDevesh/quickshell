@@ -13,7 +13,7 @@ export const TaskPriorityTypes = Object.keys(TaskPriority) as Array<keyof typeof
 export type Task = {
   id: string;
   title: string;
-  tag: string[];
+  tags: string[];
   userId: string;
   status: TaskStatus;
   priority: number;

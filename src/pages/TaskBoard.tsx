@@ -1,9 +1,10 @@
 import React from 'react';
+import { BsThreeDots } from 'react-icons/bs';
 import { TaskCard } from '../components/TaskCard';
+import { DefaultRightTray, LeftTray, TaskColumnHeader } from '../components/TaskColumnHeader';
 import { Task, TaskStatus } from '../data/Task';
 import { tasks } from '../data/tasks';
 import './TaskBoard.css';
-
 
 
 interface TaskColumnProps {
@@ -13,7 +14,14 @@ interface TaskColumnProps {
 const TaskColumn: React.FC<TaskColumnProps> = ({ columnTitle, tasks }) => {
   return (
     <div className="task-column">
-      <h3>{columnTitle}</h3>
+      <TaskColumnHeader>
+        <LeftTray>
+          <BsThreeDots />
+          <div className="text-sm bold">{columnTitle}</div>
+          <div className="text-gray-400 text-sm">{tasks.length}</div>
+        </LeftTray>
+        <DefaultRightTray />
+      </TaskColumnHeader>
       {tasks.map((task) => (
         <TaskCard key={task.id} task={task} />
       ))}

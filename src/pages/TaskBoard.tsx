@@ -1,11 +1,10 @@
 import React from 'react';
-import { BsThreeDots } from 'react-icons/bs';
-import { TaskCard } from '../components/TaskCard';
+import { PriorityIcon, StatusIcon, TagsList, TaskCardContainer, TaskCardIcon, TaskTitle, UserIcon } from '../components/TaskCard';
 import { DefaultRightTray, LeftTray, TaskColumnHeader } from '../components/TaskColumnHeader';
 import { GroupingTypes, Task, TaskPriorityTypes, TaskStatusTypes } from '../data/Task';
 import { tasks } from '../data/tasks';
 import './TaskBoard.css';
-import { getBoardColumnKeys, groupTasks } from './utils';
+import { getBoardColumnKeys, groupTasks, priorityKeyFromValue } from './utils';
 
 interface TaskColumnProps {
   columnTitle: string;
@@ -13,19 +12,47 @@ interface TaskColumnProps {
   groupedby: GroupingTypes;
 }
 const TaskColumn: React.FC<TaskColumnProps> = ({ columnTitle, tasks, groupedby }) => {
-  console.log(tasks)
+  const GroupIcon = () => {
+    let firstElement = tasks.length > 0 ? tasks[0] : undefined;
+    if (groupedby === 'Priority') {
+      //@ts-ignore
+      return <PriorityIcon priority={(firstElement != undefined) ? priorityKeyFromValue(firstElement.priority) : columnTitle} />
+    } else if (groupedby === 'User') {
+      return <UserIcon userid={firstElement?.userId ?? columnTitle} />
+    } else if (groupedby == 'Status') {
+      //@ts-ignore
+      return <StatusIcon status={firstElement?.status ?? columnTitle} />
+    }
+    throw new Error('Invalid grouping type');
+  };
   return (
     <div className="task-column">
+
       <TaskColumnHeader>
         <LeftTray>
-          <BsThreeDots />
+          <GroupIcon />
           <div className="text-sm bold">{columnTitle}</div>
           <div className="text-sm">{tasks?.length ?? 0}</div>
         </LeftTray>
         <DefaultRightTray />
       </TaskColumnHeader>
+
       {tasks.map((task) => (
-        <TaskCard key={task.id} task={task} />
+        <TaskCardContainer className='flex'>
+          <div>
+            <div className="text-sm mb-2">{task.id}</div>
+            <div className='flex gap-3'>
+              {(groupedby != 'Status') && <StatusIcon status={task.status} />}
+              <TaskTitle title={task.title} />
+            </div>
+            <div className='flex align-center gap-1 mt-3'>
+              {(groupedby != 'Priority') && <TaskCardIcon task={task} />}
+              <TagsList tags={task.tags} />
+            </div>
+          </div>
+
+          {(groupedby != 'User') && <UserIcon userid={task.userId} className="ml-auto" />}
+        </TaskCardContainer>
       ))}
     </div>
   );
@@ -33,7 +60,7 @@ const TaskColumn: React.FC<TaskColumnProps> = ({ columnTitle, tasks, groupedby }
 
 
 const TaskBoard = () => {
-  const groupby: GroupingTypes = 'Status'
+  const groupby: GroupingTypes = 'Priority'
   const groupedTasks = groupTasks(groupby, tasks);
   const keys = getBoardColumnKeys(groupby, tasks);
   return (

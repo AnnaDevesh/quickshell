@@ -22,11 +22,14 @@ function App() {
   }
 
   return (
+    <>
     <div className="App">
       {(data !== null) ?
         <TaskBoard tasks={data.tickets} users={data.users} /> :
         <h1> No data found</h1>}
     </div>
+    </>
+    //Anna Devesh 21BCE9003
   );
 }
 

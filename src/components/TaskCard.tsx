@@ -56,10 +56,13 @@ export const PriorityIcon = ({ priority }: { priority: keyof typeof TaskPriority
 };
 
 export const UserIcon = ({ userid, isActive = false, className }: { userid: string, isActive?: boolean, className?: string }) => {
+  // extract number from user id 
+  const num = userid.match(/\d+/g);
+  const userNum = num ? parseInt(num[0]) : 0;
   return (
     <div className={`relative h-min-content ${className}`}>
-        <img className="avatar" src={`https://randomuser.me/api/portraits/thumb/men/75.jpg`} alt="avatar" />
-        {<span className={`status-dot ${isActive ? "dot-active" : "dot-inactive"}`} />}
+      <img className="avatar" src={`https://randomuser.me/api/portraits/thumb/men/${10+userNum}.jpg`} alt="avatar" />
+      {<span className={`status-dot ${isActive ? "dot-active" : "dot-inactive"}`} />}
     </div>
   );
 };
@@ -67,7 +70,7 @@ export const UserIcon = ({ userid, isActive = false, className }: { userid: stri
 export const StatusIcon = ({ status }: { status: TaskStatus }) => {
   const iconMap: Record<TaskStatus, any> = {
     Todo: () => <BsThreeDots />,
-    'In progress': () => <BiSolidCircleHalf className='progress-border rounded-full scale-8 min-dim-20' color='#eab308'/> ,
+    'In progress': () => <BiSolidCircleHalf className='progress-border rounded-full scale-8 min-dim-20' color='#eab308' />,
     Done: () => <FaCheckCircle color='#6366f1' />,
     Backlog: () => <MdCancel color='gray' />,
   };
